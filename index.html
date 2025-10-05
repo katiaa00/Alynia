@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Alynia</title>
+  <link rel="stylesheet" href="index.css" />
+  <link rel="stylesheet" href="footer.css" />
+</head>
+<body>
+  <!--largeur fixe type iPhone -->
+  <div class="phone" id="app">
+
+    <header class="header">
+      <button class="burger" id="burger" aria-haspopup="true" aria-expanded="false" aria-controls="menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <!-- Logo -->
+      <img src="assets/alynia.png" alt="Alynia" class="logo" />
+
+      <!-- Icône panier -->
+      <button class="cart" aria-label="Panier">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6 6h15l-1.5 9H7.5L6 6Z" stroke="#222" stroke-width="1.6" />
+          <circle cx="9" cy="20" r="1.7" fill="#222"/>
+          <circle cx="18" cy="20" r="1.7" fill="#222"/>
+        </svg>
+      </button>
+
+      <!-- Menu déroulant -->
+      <nav id="menu" class="menu" role="menu" aria-label="Menu principal">
+        <a href="#" role="menuitem">Crèmes pour le corps</a>
+        <a href="#" role="menuitem">Brumes de parfums</a>
+        <a href="#" role="menuitem">Gamme complète</a>
+      </nav>
+    </header>
+
+    <main class="container">
+
+      <section class="collage-card">
+        <img src="assets/accueil.png" alt="Collage des 4 visuels" />
+      </section>
+
+      <section class="intro-wrap">
+        <img class="title-rose" src="assets/brume-lyse.png" alt="Venez rencontrer nos gammes" />
+
+        <div class="intro-grid">
+          <p class="intro">
+            Chez Alynia, nous croyons que la beauté réside dans la simplicité.
+            Nos soins associent des ingrédients naturels, vegan et cruelty-free,
+            inspirés de voyages et de senteurs rares, pour vous offrir une
+            expérience unique.
+          </p>
+
+          <img class="intro-visu" src="assets/litchivanille.png" alt="Visuel Litchi & Vanille" />
+        </div>
+      </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+  </div>
+
+  <script>
+    const burger = document.getElementById('burger');
+    const menu = document.getElementById('menu');
+    burger.addEventListener('click', () => {
+      menu.classList.toggle('open');
+      burger.setAttribute('aria-expanded', menu.classList.contains('open'));
+    });
+    // Fermer au clic extérieur
+    document.addEventListener('click', (e) => {
+      if (!menu.contains(e.target) && !burger.contains(e.target)) {
+        menu.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Footer commun
+    fetch('partials/footer.html')
+      .then(r => r.text())
+      .then(html => { document.getElementById('footer-placeholder').innerHTML = html; });
+  </script>
+</body>
+</html>
