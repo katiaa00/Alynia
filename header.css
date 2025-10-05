@@ -1,0 +1,86 @@
+/* HEADER GENERAL */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items: center;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 12px;
+  min-height: 88px; /* assez haut pour contenir le logo */
+  overflow: hidden;
+}
+
+/* Logo centré */
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.logo-img {
+  height: px;       /* taille du logo */
+  max-height: 72px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+
+
+/* Bouton burger */
+.burger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+}
+
+.burger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #222;
+}
+
+/* Icône panier */
+.cart {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* MENU */
+.menu {
+  display: none;
+  position: absolute;
+  top: 88px; /* aligné sous le header */
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-top: 1px solid #ddd;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+}
+
+.menu a {
+  color: #222;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.menu a:hover {
+  text-decoration: underline;
+}
+
+/* Menu ouvert */
+.menu.open {
+  display: flex;
+}

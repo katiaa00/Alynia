@@ -3,23 +3,25 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Alynia</title>
+  <title>Alynia — Brumes de parfums</title>
+
   <link rel="stylesheet" href="index.css" />
+  <link rel="stylesheet" href="brumes.css" />
   <link rel="stylesheet" href="footer.css" />
 </head>
 <body>
-  <!--largeur fixe type iPhone -->
+  <!-- largeur fixe type iPhone -->
   <div class="phone" id="app">
 
+    <!--  Header-->
     <header class="header">
       <button class="burger" id="burger" aria-haspopup="true" aria-expanded="false" aria-controls="menu">
         <span></span><span></span><span></span>
       </button>
 
-<div class="logo">
-  <img src="assets/alynia.png" alt="Alynia Logo" class="logo-img">
-</div>
-
+      <div class="logo">
+        <img src="assets/alynia.png" alt="Alynia Logo" class="logo-img">
+      </div>
 
       <!-- Icône panier -->
       <button class="cart" aria-label="Panier">
@@ -32,65 +34,60 @@
 
       <!-- Menu déroulant -->
       <nav id="menu" class="menu" role="menu" aria-label="Menu principal">
-        <a href="#" role="menuitem">Crèmes pour le corps</a>
-        <a href="#" role="menuitem">Brumes de parfums</a>
-        <a href="#" role="menuitem">Gamme complète</a>
+        <a href="cremes.html" role="menuitem">Crèmes pour le corps</a>
+        <a href="brumes.html" role="menuitem">Brumes de parfums</a>
+        <a href="index.html#duos" role="menuitem">Gamme complète</a>
       </nav>
     </header>
 
     <main class="container">
+      <!-- pastille rose -->
+      <div class="chip">Brumes de parfums</div>
 
-      <section class="collage-card">
-        <img src="assets/accueil1.png" alt="Collage des 4 visuels" />
+      <!-- grille produits -->
+      <section class="grid">
+        <article class="card">
+          <img src="assets/brumes/brume-velora.png" alt="Velora - brume">
+          <h3 class="name velora">Velora</h3>
+          <small>Brumes de parfums</small>
+          <strong>24,90€</strong>
+        </article>
+
+        <article class="card">
+          <img src="assets/brumes/brume-lyse.png" alt="Lysée - brume">
+          <h3 class="name lysee">Lysée</h3>
+          <small>Brumes de parfums</small>
+          <strong>24,90€</strong>
+        </article>
+
+        <article class="card">
+          <img src="assets/brumes/brume-jaselya.png" alt="Jasélya - brume">
+          <h3 class="name jaselya">Jasélya</h3>
+          <small>Brumes de parfums</small>
+          <strong>24,90€</strong>
+        </article>
+
+        <article class="card">
+          <img src="assets/brumes/brume-nuve.png" alt="Nuvé - brume">
+          <h3 class="name nuve">Nuvé</h3>
+          <small>Brumes de parfums</small>
+          <strong>24,90€</strong>
+        </article>
       </section>
-
-<!-- Bloc intro -->
-<section class="intro-grid">
-  <div class="intro-text">
-    <p>
-      Chez Alynia, nous croyons que la beauté réside dans la simplicité.
-      Nos soins associent des ingrédients naturels, vegan et cruelty-free,
-      inspirés de voyages et de senteurs rares, pour vous offrir une
-      expérience unique.
-    </p>
-  </div>
-  <div class="intro-img">
-    <img src="assets/brumes/brume-lyse.png" alt="Brume Alynia">
-  </div>
-</section>
-
-<!-- Titre rose -->
-<h2 class="titre-rose">Venez rencontrer nos gammes :</h2>
-
-<!-- Bloc gammes -->
-<section class="gammes-grid">
-  <div class="gammes-text">
-    <ul>
-      <li>Musc & Vanille</li>
-      <li>Litchi & Thé Blanc</li>
-      <li>Cerise & Fleur de Jasmin</li>
-      <li>Coton & Musc Blanc</li>
-    </ul>
-  </div>
-  <div class="gammes-img">
-    <img src="assets/litchivanille1.png" alt="Litchi & Vanille">
-  </div>
-</section>
-
-
     </main>
 
+    <!-- Footer commun -->
     <div id="footer-placeholder"></div>
   </div>
 
   <script>
+    // Menu 
     const burger = document.getElementById('burger');
     const menu = document.getElementById('menu');
     burger.addEventListener('click', () => {
       menu.classList.toggle('open');
       burger.setAttribute('aria-expanded', menu.classList.contains('open'));
     });
-    // Fermer au clic extérieur
     document.addEventListener('click', (e) => {
       if (!menu.contains(e.target) && !burger.contains(e.target)) {
         menu.classList.remove('open');
