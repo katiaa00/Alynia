@@ -3,17 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Alynia — Brumes de parfums</title>
+  <title>Alynia — Gamme complète</title>
 
   <link rel="stylesheet" href="index.css" />
-  <link rel="stylesheet" href="brumes.css" />
+  <link rel="stylesheet" href="gammes.css" />
   <link rel="stylesheet" href="footer.css" />
 </head>
 <body>
-  <!-- largeur fixe type iPhone -->
   <div class="phone" id="app">
 
-    <!--  Header-->
     <header class="header">
       <button class="burger" id="burger" aria-haspopup="true" aria-expanded="false" aria-controls="menu">
         <span></span><span></span><span></span>
@@ -23,7 +21,6 @@
         <img src="assets/alynia.png" alt="Alynia Logo" class="logo-img">
       </div>
 
-      <!-- Icône panier -->
       <button class="cart" aria-label="Panier">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M6 6h15l-1.5 9H7.5L6 6Z" stroke="#222" stroke-width="1.6" />
@@ -32,7 +29,6 @@
         </svg>
       </button>
 
-      <!-- Menu déroulant -->
       <nav id="menu" class="menu" role="menu" aria-label="Menu principal">
         <a href="index.html" role="menuitem">Accueil</a>
         <a href="cremes.html" role="menuitem">Crèmes pour le corps</a>
@@ -42,37 +38,41 @@
     </header>
 
     <main class="container">
-      <!-- pastille rose -->
-      <div class="chip">Brumes de parfums</div>
+      <!-- Pastille rose -->
+      <div class="chip">Gamme complète</div>
 
-      <!-- grille produits -->
+      <!-- Grille des produits -->
       <section class="grid">
+        <!-- Velora -->
         <article class="card">
-          <img src="assets/brumes/brume-velora.png" alt="Velora - brume">
+          <img src="assets/duo/duo-velora.png" alt="Duo Velora (crème + brume)">
           <h3 class="name velora">Velora</h3>
-          <small>Brumes de parfums</small>
-          <strong>24,90€</strong>
+          <small>Duo crème + brume</small>
+          <strong>40,90€</strong>
         </article>
 
+        <!-- Lysée -->
         <article class="card">
-          <img src="assets/brumes/brume-lyse.png" alt="Lysée - brume">
+          <img src="assets/duo/duo-lysee.png" alt="Duo Lysée (crème + brume)">
           <h3 class="name lysee">Lysée</h3>
-          <small>Brumes de parfums</small>
-          <strong>24,90€</strong>
+          <small>Duo crème + brume</small>
+          <strong>40,90€</strong>
         </article>
 
+        <!-- Jasélya -->
         <article class="card">
-          <img src="assets/brumes/brume-jaselya.png" alt="Jasélya - brume">
+          <img src="assets/duo/duo-jaselya.png" alt="Duo Jasélya (crème + brume)">
           <h3 class="name jaselya">Jasélya</h3>
-          <small>Brumes de parfums</small>
-          <strong>24,90€</strong>
+          <small>Duo crème + brume</small>
+          <strong>40,90€</strong>
         </article>
 
+        <!-- Nuvé -->
         <article class="card">
-          <img src="assets/brumes/brume-nuve.png" alt="Nuvé - brume">
+          <img src="assets/duo/duo-nuve.png" alt="Duo Nuvé (crème + brume)">
           <h3 class="name nuve">Nuvé</h3>
-          <small>Brumes de parfums</small>
-          <strong>24,90€</strong>
+          <small>Duo crème + brume</small>
+          <strong>40,90€</strong>
         </article>
       </section>
     </main>
@@ -82,7 +82,7 @@
   </div>
 
   <script>
-    // Menu 
+    // Menu
     const burger = document.getElementById('burger');
     const menu = document.getElementById('menu');
     burger.addEventListener('click', () => {
