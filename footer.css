@@ -12,7 +12,6 @@
   grid-template-columns:1fr 1fr 1fr;
   gap:24px;
 }
-.footer-logo{ height:70px; display:block; }
 .footer-col{ display:flex; flex-direction:column; gap:8px }
 .footer-col h4{ margin:0 0 6px; font-size:.95rem; letter-spacing:.02em }
 .footer a{ color:#3a3a3a; text-decoration:none; font-size:.95rem }
@@ -36,6 +35,5 @@
 
 @media (max-width: 680px){
   .footer-top{ grid-template-columns:1fr; }
-  .footer-logo{ margin-bottom:8px }
   .footer-bottom{ flex-direction:column; gap:8px }
 }
