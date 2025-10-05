@@ -48,8 +48,41 @@ body{
 .burger span:nth-child(2){ top:13px }
 .burger span:nth-child(3){ top:20px }
 
-.logo{ height:72px; display:block; margin:0 auto; }
+.logo {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 80px;   
+}
+
+.logo-img {
+  height: 270px;     /*  taille du logo */
+  width: auto;
+  display: block;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  height: 80px; 
+}
+
 .cart{ border:0; background:transparent; justify-self:end; cursor:pointer }
+header {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.logo {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center; 
+}
 
 /* Menu déroulant*/
 .menu{
@@ -98,4 +131,61 @@ body{
   .collage-card img{ width:280px; }
   .intro-grid{ grid-template-columns:1fr; }
   .intro-visu{ width:100%; justify-self:stretch; }
+}
+
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: center;
+  margin: 20px 0;
+}
+.intro-text p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.intro-img img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+/* Titre rose en HTML */
+.titre-rose {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--rose);
+  margin: 20px 0 10px 14px;
+}
+
+.gammes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+.gammes-text ul {
+  list-style: none;
+  padding: 0;
+}
+.gammes-text li {
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+.gammes-img img {
+  width: 180px; 
+  border-radius: 8px;
+}
+
+.litchi-img {
+  width: 400px; 
+  max-width: 100%;
+}
+
+
+/* Responsive mobile */
+@media (max-width: 340px) {
+  .intro-grid, .gammes-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
 }
