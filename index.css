@@ -19,13 +19,27 @@ body{
   justify-content:center;
 }
 
+/*  responsive */
 .phone{
-  width:375px;                  
-  min-height:100svh;
-  background:var(--bg);
-  position:relative;           
-  
+  width: 100%;
+  max-width: 430px;        
+  margin: 0 auto;
+  min-height: 100svh;
+  background: var(--bg);
+  position: relative;
+  padding: 0;             
 }
+
+/* tablette */
+@media (min-width: 768px){
+  .phone{ max-width: 768px; }   
+}
+
+/* desktop */
+@media (min-width: 1024px){
+  .phone{ max-width: 1024px; }  
+}
+
 
 /* ====== HEADER ====== */
 .header{
