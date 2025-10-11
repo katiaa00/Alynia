@@ -27,6 +27,11 @@ small{display:block; color:#666}
 strong{display:block; margin-top:.2rem; font-size:1.05rem}
 
 @media (max-width:340px){ .phone{width:320px} .grid{gap:14px} }
+@media (min-width: 768px) {   body { font-size: 18px; } }
+
+@media (orientation: landscape){
+  .chip{ width: 60%; }  
+}
 
 .logo {
   flex-grow: 1;
