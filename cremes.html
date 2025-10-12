@@ -4,14 +4,17 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Alynia — Crèmes pour le corps</title>
-  <link rel="stylesheet" href="index.css" />   
+
+  <!-- styles globaux (header/footer) -->
+  <link rel="stylesheet" href="index.css" />
+  <!-- styles spécifiques page crèmes -->
   <link rel="stylesheet" href="cremes.css" />
   <link rel="stylesheet" href="footer.css" />
 </head>
 <body>
   <div class="phone">
 
-    <!-- Header identique-->
+    <!-- Header identique -->
     <header class="header">
       <button class="burger" id="burger" aria-haspopup="true" aria-expanded="false" aria-controls="menu">
         <span></span><span></span><span></span>
@@ -20,6 +23,7 @@
       <div class="logo">
         <img src="assets/alynia.png" alt="Alynia Logo" class="logo-img">
       </div>
+      
 
       <!-- Icône panier -->
       <button class="cart" aria-label="Panier">
@@ -33,43 +37,48 @@
       <!-- Menu déroulant -->
       <nav id="menu" class="menu" role="menu" aria-label="Menu principal">
         <a href="index.html" role="menuitem">Accueil</a>
-        <a href="cremes.html" role="menuitem">Crèmes pour le corps</a>
+        <a href="cremes.html" role="menuitem" aria-current="page">Crèmes pour le corps</a>
         <a href="brumes.html" role="menuitem">Brumes de parfums</a>
         <a href="gammes.html" role="menuitem">Gammes complète</a>
       </nav>
     </header>
 
     <main class="container">
-      <div class="chip">Crèmes pour le corps</div>
+      <h1 class="sr-only">Crèmes pour le corps Alynia</h1>
 
-      <section class="grid">
-        <article class="card">
+
+      <!-- Barre rose -->
+      <div class="chip">Gamme complète</div>
+
+      <!-- Grille produits (cartes cliquables) -->
+      <section class="grid" aria-label="Liste des crèmes">
+        <a class="card" href="produit.html?sku=creme-velora">
           <img src="assets/cremes/creme-velora.png" alt="Velora - crème">
           <h3 class="name velora">Velora</h3>
           <small>Crèmes pour le corps</small>
-          <strong>22,50€</strong>
-        </article>
+          <strong>24,90€</strong>
+        </a>
 
-        <article class="card">
+        <a class="card" href="produit.html?sku=creme-lysee">
           <img src="assets/cremes/creme-lysee.png" alt="Lysée - crème">
           <h3 class="name lysee">Lysée</h3>
           <small>Crèmes pour le corps</small>
-          <strong>22,50€</strong>
-        </article>
+          <strong>24,90€</strong>
+        </a>
 
-        <article class="card">
+        <a class="card" href="produit.html?sku=creme-jaselya">
           <img src="assets/cremes/creme-jaselya.png" alt="Jasélya - crème">
           <h3 class="name jaselya">Jasélya</h3>
           <small>Crèmes pour le corps</small>
-          <strong>22,50€</strong>
-        </article>
+          <strong>24,90€</strong>
+        </a>
 
-        <article class="card">
+        <a class="card" href="produit.html?sku=creme-nuve">
           <img src="assets/cremes/creme-nuve.png" alt="Nuvé - crème">
           <h3 class="name nuve">Nuvé</h3>
           <small>Crèmes pour le corps</small>
-          <strong>22,50€</strong>
-        </article>
+          <strong>24,90€</strong>
+        </a>
       </section>
     </main>
 
