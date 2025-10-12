@@ -15,33 +15,21 @@ body{
   color:var(--text);
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial;
   line-height:1.55;
-  display:flex;                 /* centre l'écran téléphone */
-  justify-content:center;
+  display:flex; justify-content:center;
 }
 
-/*  responsive */
+/* Mobile first : occupe toute la largeur (portrait/paysage) */
 .phone{
-  width: 100%;
-  max-width: 430px;        
-  margin: 0 auto;
-  min-height: 100svh;
-  background: var(--bg);
-  position: relative;
-  padding: 0;             
+  width:100%;
+  max-width:1100px;
+  min-height:100svh;              /* vh relatif au viewport mobile */
+  margin:0 auto;
+  background:var(--bg);
+  position:relative;
+  padding:0 4vw;                  /* %/vw -> unité relative */
 }
 
-/* tablette */
-@media (min-width: 768px){
-  .phone{ max-width: 768px; }   
-}
-
-/* desktop */
-@media (min-width: 1024px){
-  .phone{ max-width: 1024px; }  
-}
-
-
-/* ====== HEADER ====== */
+/* ====== HEADER (inchangé) ====== */
 .header{
   position:sticky; top:0; z-index:30;
   display:grid; grid-template-columns:44px 1fr 44px; align-items:center;
@@ -50,55 +38,14 @@ body{
   border-bottom:1px solid var(--border);
   padding:10px 12px;
 }
-
-.burger{
-  width:40px; height:30px; position:relative;
-  border:0; background:transparent; cursor:pointer;
-}
-.burger span{
-  position:absolute; left:8px; right:8px; height:2px; background:#333;
-}
-.burger span:nth-child(1){ top:6px }
-.burger span:nth-child(2){ top:13px }
-.burger span:nth-child(3){ top:20px }
-
-.logo {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-height: 80px;   
-}
-
-.logo-img {
-  height: 270px;     /*  taille du logo */
-  width: auto;
-  display: block;
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  height: 80px; 
-}
-
+.burger{ width:40px; height:30px; position:relative; border:0; background:transparent; cursor:pointer }
+.burger span{ position:absolute; left:8px; right:8px; height:2px; background:#333 }
+.burger span:nth-child(1){ top:6px } .burger span:nth-child(2){ top:13px } .burger span:nth-child(3){ top:20px }
+.logo{ flex-grow:1; display:flex; justify-content:center; align-items:center; max-height:80px }
+.logo-img{ height:16vh; width:auto; display:block }    /* vh -> adaptatif paysage/portrait */
 .cart{ border:0; background:transparent; justify-self:end; cursor:pointer }
-header {
-  display: flex;
-  justify-content: space-between; 
-  align-items: center;
-  padding: 10px 20px;
-}
 
-.logo {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center; 
-}
-
-/* Menu déroulant*/
+/* Menu déroulant */
 .menu{
   position:absolute; left:12px; top:74px;
   background:#fff; border:1px solid var(--border);
@@ -113,94 +60,210 @@ header {
 .menu a::after{ content:"›"; color:#444 }
 .menu a:hover{ background:#faf7f2 }
 
-.container{ width:100%; padding:16px 14px 56px; }
+/* ========= MAIN ========= */
+.container{ width:100%; padding:16px 0 56px }
 
+/* 1) Intro */
 .collage-card{
   background:#fff; border:1px solid var(--border);
   border-radius:18px; box-shadow:var(--shadow);
   padding:18px; margin:14px auto 18px;
 }
-.collage-card img{
-  display:block; width:310px; height:auto; margin:0 auto;
-}
-
-.title-rose{
-  display:block; width:240px; height:auto; margin:6px auto 10px;
-}
+.collage-card img{ display:block; width:100%; height:auto; margin:0 auto; border-radius:12px }
 
 .intro-grid{
-  display:grid; grid-template-columns:1fr 1fr; gap:12px; align-items:start;
-}
-.intro{
-  background:#fff; border:1px solid var(--border);
-  border-radius:12px; padding:12px; font-size:.92rem; color:#333;
-}
-.intro-visu{
-  width:160px; height:auto; border-radius:12px; border:1px solid var(--border);
-  justify-self:end;
-}
-
-@media (max-width: 340px){
-  .phone{ width:320px; }
-  .collage-card img{ width:280px; }
-  .intro-grid{ grid-template-columns:1fr; }
-  .intro-visu{ width:100%; justify-self:stretch; }
-}
-
-.intro-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  align-items: center;
+  display:grid; grid-template-columns:1fr; gap:16px; align-items:center;
   margin: 20px 0;
 }
-.intro-text p {
-  font-size: 0.95rem;
+.intro-text p{ font-size:0.95rem; line-height:1.6 }
+.intro-img img{ max-width:100%; border-radius:8px }
+
+/* 2) Menu tactile (boutons) */
+.touch-menu{
+  display:flex; gap:10px; flex-wrap:wrap; margin:6px 0 16px;
+}
+.btn-link{
+  font-size:0.95rem;               /* rem/em */
+  padding:0.8em 1.2em;
+  border:1px solid var(--border);
+  background:#fff;
+  border-radius:999px;
+  cursor:pointer;
+}
+.btn-link:active{ transform:scale(0.98) }
+
+/* 3) Titre rose */
+.titre-rose{
+  font-size:clamp(1.1rem, 2.8vw, 1.6rem);  /* vw pour adaptatif */
+  font-weight:700;
+  color:var(--rose);
+  margin: 10px 0 14px 4px;
+}
+
+/* 4) Cartes gammes cliquables */
+.gammes-cards{
+  display:grid;
+  grid-template-columns: 1fr;           /* mobile: 1 colonne */
+  gap:16px; margin-bottom:20px;
+}
+.gamme-card{
+  display:block; text-decoration:none; color:inherit;
+  background:#fff; border:1px solid var(--border); border-radius:14px; overflow:hidden;
+  box-shadow: var(--shadow); transition: transform .15s ease, box-shadow .15s ease;
+}
+.gamme-card:hover{ transform: translateY(-2px); box-shadow:0 14px 36px rgba(0,0,0,.08) }/* remplacer ta règle actuelle */
+.gamme-card img{
+  width:100%;
+  height:500px;          /* au lieu de 210px */
+  object-fit:cover;      /* on garde cover */
+  object-position:center top; /* on remonte un peu le cadrage */
+  display:block;
+  border-radius:12px 12px 0 0;
+}
+
+.gamme-card .content{ padding:12px }
+.gamme-card h3{ margin:0 0 6px; font-size:1rem }
+.gamme-card p{ margin:0; color:var(--muted); font-size:.95rem }
+
+/* 5) BLOCS .box — flex column (mobile), row (tablette/desktop) */
+.boxes{ display:flex; flex-direction:column; gap:18px; margin:22px 0 }
+.box{
+  display:flex; flex-direction:column; gap:12px;
+  background:#fff; border:1px solid var(--border);
+  border-radius:14px; padding:12px; box-shadow:var(--shadow);
+}
+.box img{ width:100%; height:auto; border-radius:10px }
+.box-body h2{ margin:.2rem 0 .4rem; font-size:1.25rem }
+.box-body p{ margin:0; font-size:1rem; line-height:1.6 }
+
+/* Liste simple */
+.gammes-list h3{ margin:16px 0 8px }
+.gammes-list ul{ list-style:none; padding:0; margin:0 }
+.gammes-list li{ margin:8px 0; padding-left:10px; position:relative }
+.gammes-list li::before{
+  content:""; position:absolute; left:0; top:.45em; width:3px; height:1em; background:#ddd; border-radius:2px;
+}
+
+/* ======= MEDIA QUERIES ======= */
+
+/* Tablette */
+@media (min-width: 768px){
+  .phone{ max-width:100vw }                 /* prend toute la largeur */
+  .intro-grid{ grid-template-columns:1fr 1fr }
+  .gammes-cards{ grid-template-columns: repeat(2, 1fr) }
+  .box{ flex-direction:row; align-items:center }   /* COLUMN -> ROW exigence */
+  .box img{ width:45% }                             
+}
+
+/* Desktop */
+@media (min-width: 1024px){
+  .phone{ max-width:1024px }
+  .gammes-cards{ grid-template-columns: repeat(3, 1fr) }
+  .box img{ width:38% }
+}
+
+/* Orientation : styles différents */
+@media (orientation: portrait){
+  :root{ --bg:#f5efe7; }                   /* fond doux en portrait */
+}
+@media (orientation: landscape){
+  .phone{ max-width:100vw; padding-left:3vw; padding-right:3vw }  /* plein écran en paysage */
+  .boxes{ background:rgba(255,255,255,0.35); border-radius:16px; padding:8px } /* petit changement visuel */
+}
+
+/* Accessibilité */
+.sr-only{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden;
+  clip:rect(0,0,0,0); border:0;
+}
+
+/* -------- SECTION .boxes : rendu plus compact -------- */
+.boxes {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 40px auto;          /* espace équilibré haut/bas */
+  background: #f9f4ef;        /* fond très léger beige rosé */
+  border-radius: 16px;
+  padding: 24px;
+  max-width: 900px;           /* pas toute la largeur */
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+}
+
+/* Chaque .box : image et texte côte à côte (tablette+desktop), centrés */
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--card);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+/* image plus petite et centrée */
+.box img {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  display: block;
+  border-radius: 10px 10px 0 0;
+}
+
+/* texte centré, plus resserré */
+.box-body {
+  padding: 1.2rem;
+  text-align: center;
+}
+
+.box-body h2 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5em;
+}
+
+.box-body p {
+  color: var(--muted);
+  font-size: 1rem;
   line-height: 1.5;
 }
-.intro-img img {
-  max-width: 100%;
-  border-radius: 8px;
-}
 
-/* Titre rose en HTML */
-.titre-rose {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: var(--rose);
-  margin: 20px 0 10px 14px;
-}
+/* --- Tablette : côte à côte mais centrés dans le conteneur --- */
+@media (min-width: 768px) {
+  .box {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 16px 24px;
+  }
 
-.gammes-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  align-items: start;
-}
-.gammes-text ul {
-  list-style: none;
-  padding: 0;
-}
-.gammes-text li {
-  margin-bottom: 8px;
-  font-size: 0.95rem;
-}
-.gammes-img img {
-  width: 180px; 
-  border-radius: 8px;
-}
+  .box img {
+    width: 40%;
+    border-radius: 10px;
+  }
 
-.litchi-img {
-  width: 400px; 
-  max-width: 100%;
-}
-
-
-/* Responsive mobile */
-@media (max-width: 340px) {
-  .intro-grid, .gammes-grid {
-    grid-template-columns: 1fr;
-    text-align: center;
+  .box-body {
+    width: 50%;
+    text-align: left;
   }
 }
 
+/* --- Desktop : alignement élégant et équilibré --- */
+@media (min-width: 1024px) {
+  .boxes {
+    max-width: 1000px;
+    padding: 36px;
+  }
+
+  .box img {
+    width: 35%;
+  }
+
+  .box-body h2 {
+    font-size: 1.5rem;
+  }
+
+  .box-body p {
+    font-size: 1.05rem;
+  }
+}

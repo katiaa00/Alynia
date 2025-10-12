@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="footer.css" />
 </head>
 <body>
-  <!--largeur fixe type iPhone -->
   <div class="phone" id="app">
 
     <header class="header">
@@ -16,10 +15,9 @@
         <span></span><span></span><span></span>
       </button>
 
-<div class="logo">
-  <img src="assets/alynia.png" alt="Alynia Logo" class="logo-img">
-</div>
-
+      <div class="logo">
+        <img src="assets/alynia.png" alt="Alynia Logo" class="logo-img">
+      </div>
 
       <!-- Icône panier -->
       <button class="cart" aria-label="Panier">
@@ -40,44 +38,71 @@
     </header>
 
     <main class="container">
-
+      <!-- 1) Intro (déjà ok) -->
       <section class="collage-card">
         <img src="assets/accueil1.png" alt="Collage des 4 visuels" />
       </section>
 
-<!-- Bloc intro -->
-<section class="intro-grid">
-  <div class="intro-text">
-    <p>
-      Chez Alynia, nous croyons que la beauté réside dans la simplicité.
-      Nos soins associent des ingrédients naturels, vegan et cruelty-free,
-      inspirés de voyages et de senteurs rares, pour vous offrir une
-      expérience unique.
-    </p>
-  </div>
-  <div class="intro-img">
-    <img src="assets/brumes/brume-lyse.png" alt="Brume Alynia">
-  </div>
-</section>
+      <section class="intro-grid">
+        <div class="intro-text">
+          <p>
+            Chez Alynia, nous croyons que la beauté réside dans la simplicité.
+            Nos soins associent des ingrédients naturels, vegan et cruelty-free,
+            inspirés de voyages et de senteurs rares, pour vous offrir une
+            expérience unique.
+          </p>
+        </div>
+      </section>
 
-<!-- Titre rose -->
-<h2 class="titre-rose">Venez rencontrer nos gammes :</h2>
 
-<!-- Bloc gammes -->
-<section class="gammes-grid">
-  <div class="gammes-text">
-    <ul>
-      <li>Musc & Vanille</li>
-      <li>Litchi & Thé Blanc</li>
-      <li>Cerise & Fleur de Jasmin</li>
-      <li>Coton & Musc Blanc</li>
-    </ul>
-  </div>
-  <div class="gammes-img">
-    <img src="assets/litchivanille1.png" alt="Litchi & Vanille">
-  </div>
-</section>
+      <!-- 3) Titre rose -->
+      <h2 class="titre-rose">Venez rencontrer nos gammes :</h2>
 
+      <!-- 4) Cartes cliquables (images = liens) -->
+      <section class="gammes-cards">
+        <a class="gamme-card" href="cremes.html">
+          <img src="assets/cremes/creme-lysee.png" alt="Crèmes pour le corps">
+          <div class="content">
+            <h3>Crèmes pour le corps</h3>
+            <p>Découvrez nos crèmes onctueuses aux ingrédients naturels qui hydratent et nourrissent votre peau.</p>
+          </div>
+        </a>
+        <a class="gamme-card" href="brumes.html">
+          <img src="assets/brumes/brume-lyse.png" alt="Brumes de parfums">
+          <div class="content">
+            <h3>Brumes de parfums</h3>
+            <p>Des fragrances délicates et légères pour parfumer votre quotidien avec élégance.</p>
+          </div>
+        </a>
+        <a class="gamme-card" href="gammes.html">
+          <img src="assets/duo/duo-lysee.png" alt="Gamme complète">
+          <div class="content">
+            <h3>Gamme complète</h3>
+            <p>Explorez l'ensemble de notre collection pour une routine beauté harmonieuse et naturelle.</p>
+          </div>
+        </a>
+      </section>
+
+      <!-- 5) SECTION .boxes (exigence : h2 + p + img) -->
+      <section class="boxes" aria-labelledby="boxes-title">
+        <h2 id="boxes-title" class="sr-only">Nos gammes en détail</h2>
+
+        <article class="box">
+          <img src="assets/monoi.png" alt="Crème corps Velora">
+          <div class="box-body">
+            <h2>Senteurs Envoûtantes</h2>
+            <p>Texture onctueuse, enrichie en beurre de karité et vitamine E. Idéale pour les peaux en quête de confort.</p>
+          </div>
+        </article>
+
+        <article class="box">
+          <img src="assets/litchi.jpg" alt="Brume parfumée Velora">
+          <div class="box-body">
+            <h2>Brume Légère</h2>
+            <p>Un voile parfumé délicat pour accompagner votre routine. Notes propres et élégantes au quotidien.</p>
+          </div>
+        </article>
+      </section>
 
     </main>
 
@@ -91,12 +116,16 @@
       menu.classList.toggle('open');
       burger.setAttribute('aria-expanded', menu.classList.contains('open'));
     });
-    // Fermer au clic extérieur
     document.addEventListener('click', (e) => {
       if (!menu.contains(e.target) && !burger.contains(e.target)) {
         menu.classList.remove('open');
         burger.setAttribute('aria-expanded', 'false');
       }
+    });
+
+    // Boutons tactiles -> navigation
+    document.querySelectorAll('.btn-link').forEach(btn=>{
+      btn.addEventListener('click', ()=> location.href = btn.dataset.go);
     });
 
     // Footer commun

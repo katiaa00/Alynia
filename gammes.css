@@ -46,3 +46,9 @@ strong{display:block; margin-top:.2rem; font-size:1.05rem}
   width: auto;
   display: block;
 }
+
+.card { position: relative; overflow: hidden; }
+.stretched-link { position: static; }
+.stretched-link::after{
+  content:""; position:absolute; inset:0; /* rend toute la carte cliquable */
+}
