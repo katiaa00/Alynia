@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Alynia — Crèmes pour le corps</title>
 
-  <!-- styles globaux (header/footer) -->
+  <!-- styles globaux -->
   <link rel="stylesheet" href="index.css" />
-  <!-- styles spécifiques page crèmes -->
+  <!-- style spécifique -->
   <link rel="stylesheet" href="cremes.css" />
   <link rel="stylesheet" href="footer.css" />
 </head>
+
 <body>
   <div class="phone">
-
     <!-- Header identique -->
     <header class="header">
       <button class="burger" id="burger" aria-haspopup="true" aria-expanded="false" aria-controls="menu">
@@ -23,9 +23,7 @@
       <div class="logo">
         <img src="assets/alynia.png" alt="Alynia Logo" class="logo-img">
       </div>
-      
 
-      <!-- Icône panier -->
       <button class="cart" aria-label="Panier">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M6 6h15l-1.5 9H7.5L6 6Z" stroke="#222" stroke-width="1.6" />
@@ -34,7 +32,6 @@
         </svg>
       </button>
 
-      <!-- Menu déroulant -->
       <nav id="menu" class="menu" role="menu" aria-label="Menu principal">
         <a href="index.html" role="menuitem">Accueil</a>
         <a href="cremes.html" role="menuitem" aria-current="page">Crèmes pour le corps</a>
@@ -46,9 +43,8 @@
     <main class="container">
       <h1 class="sr-only">Crèmes pour le corps Alynia</h1>
 
-
-      <!-- Barre rose -->
-      <div class="chip">Gamme complète</div>
+      <!-- Barre rose demandée -->
+      <div class="chip">Crèmes pour le corps</div>
 
       <!-- Grille produits (cartes cliquables) -->
       <section class="grid" aria-label="Liste des crèmes">
@@ -86,6 +82,7 @@
   </div>
 
   <script>
+    // menu burger
     const burger = document.getElementById('burger');
     const menu = document.getElementById('menu');
     burger.addEventListener('click', () => {
@@ -99,6 +96,7 @@
       }
     });
 
+    // footer commun
     fetch('partials/footer.html')
       .then(r => r.text())
       .then(html => { document.getElementById('footer-placeholder').innerHTML = html; });
