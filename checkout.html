@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Paiement — Démo</title>
+  <style>
+    :root{ --rose:#efc9d1; --border:#e6ddd2; --text:#222; --bg:#f5efe7 }
+    *{box-sizing:border-box} body{margin:0; background:var(--bg); color:var(--text);
+    font-family:Inter,system-ui,Arial; display:flex; justify-content:center}
+    .wrap{ width:min(92vw, 720px); background:#fff; margin:24px 0; padding:16px;
+      border:1px solid var(--border); border-radius:14px }
+    h1{ font-size:1.2rem; margin:0 0 10px }
+    .grid{ display:grid; grid-template-columns:1fr; gap:14px }
+    @media(min-width:768px){ .grid{ grid-template-columns:1.3fr .7fr } }
+    .card{ border:1px solid var(--border); border-radius:12px; padding:12px }
+    .btn{ background:var(--rose); border:0; border-radius:999px; padding:10px 16px;
+      font-weight:700; cursor:pointer; width:100% }
+    .sum-row{ display:flex; justify-content:space-between; margin:6px 0 }
+    .muted{ color:#666; font-size:.95rem }
+    input{ width:100%; padding:10px; border:1px solid var(--border); border-radius:8px }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Paiement (démo)</h1>
+    <div class="grid">
+      <div class="card">
+        <h2>Vos informations</h2>
+        <div class="muted">Ceci est une simulation. Aucune carte réelle n’est requise.</div>
+        <label>Nom complet<br><input id="name"></label><br><br>
+        <label>Email<br><input id="email" type="email"></label><br><br>
+        <label>N° de carte (démo)<br><input placeholder="4242 4242 4242 4242"></label><br><br>
+        <label>Expiration<br><input placeholder="12/34"></label><br><br>
+        <label>CVC<br><input placeholder="123"></label><br><br>
+        <button class="btn" id="payDemo">Payer (mode démo)</button>
+      </div>
+
+      <div class="card">
+        <h2>Récapitulatif</h2>
+        <div id="recap"></div>
+        <div class="sum-row"><strong>Total</strong><strong id="total">0,00€</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function getCart(){ return JSON.parse(localStorage.getItem('cart') || '[]'); }
+    function euro(n){ return n.toFixed(2) + '€'; }
+
+    // afficher recap
+    const recap = document.getElementById('recap');
+    const totalEl = document.getElementById('total');
+    let total = 0;
+    getCart().forEach(i => {
+      const row = document.createElement('div');
+      row.className='sum-row';
+      row.textContent = `${i.name} × ${i.quantity}`;
+      const price = document.createElement('span');
+      price.textContent = euro(i.price * i.quantity);
+      row.appendChild(price);
+      recap.appendChild(row);
+      total += i.price * i.quantity;
+    });
+    totalEl.textContent = euro(total);
+
+    // bouton payer (démo)
+    document.getElementById('payDemo').addEventListener('click', () => {
+      // ici on ferait l’appel API (Stripe/PayPal) — on simule :
+      localStorage.removeItem('cart');     // vide le panier
+      alert('Paiement réussi (démo) ! Merci pour votre achat ❤️');
+      window.location.href = 'index.html';
+    });
+  </script>
+</body>
+</html>

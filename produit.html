@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Velora – Crème pour le corps</title>
+  <link rel="stylesheet" href="produit.css" />
+  <link rel="stylesheet" href="footer.css" />
+</head>
+<body>
+  <div class="phone">
+
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+      <button class="burger" id="burger" aria-haspopup="true" aria-expanded="false" aria-controls="menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="logo">
+        <img src="assets/alynia.png" alt="Alynia" class="logo-img">
+      </div>
+
+      <!-- ⬇️ donne un id pour ouvrir le panier -->
+<button class="cart" id="openCart" aria-label="Panier">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M6 6h15l-1.5 9H7.5L6 6Z" stroke="#222" stroke-width="1.6" />
+    <circle cx="9" cy="20" r="1.7" fill="#222"/>
+    <circle cx="18" cy="20" r="1.7" fill="#222"/>
+  </svg>
+  <!-- ⬇️ le badge quantité -->
+  <span class="cart-badge" id="cartBadge" aria-hidden="true">0</span>
+</button>
+
+
+      <nav id="menu" class="menu" role="menu" aria-label="Menu principal">
+        <a href="index.html" role="menuitem">Accueil</a>
+        <a href="cremes.html" role="menuitem">Crèmes pour le corps</a>
+        <a href="brumes.html" role="menuitem">Brumes de parfums</a>
+        <a href="gammes.html" role="menuitem">Gamme complète</a>
+      </nav>
+    </header>
+
+    <!-- ===== CONTENU ===== -->
+    <main class="container">
+      <div class="chip">Velora – crème</div>
+
+      <!-- Galerie produit -->
+      <section class="gallery" aria-label="Galerie Velora">
+        <div class="main-photo">
+          <img id="mainImg" src="assets/cremes/creme-velora.png" alt="Velora — visuel principal">
+        </div>
+
+        <div class="thumbs" role="list">
+          <button class="thumb">
+            <img src="assets/cremes/creme-velora.png"
+                 alt="Velora — crème"
+                 data-full="assets/cremes/creme-velora.png">
+          </button>
+
+          <button class="thumb current" aria-current="true">
+            <img src="assets/vanille.jpg"
+                 alt="Velora — odeur"
+                 data-full="assets/vanille.jpg">
+          </button>
+
+          <button class="thumb">
+            <img src="assets/texture.png"
+                 alt="Velora — texture"
+                 data-full="assets/texture.png">
+          </button>
+        </div>
+      </section>
+
+      <!-- Description simple -->
+      <section class="infos">
+        <h2>Velora</h2>
+        <p class="categorie">Crèmes pour le corps</p>
+        <p class="prix">22,50€</p>
+
+        <!-- ⬇️ id pour ajouter au panier -->
+        <button class="btn-panier" id="addToCart">+ Ajouter au panier</button>
+
+        <h3>Notes olfactives :</h3>
+        <div class="notes">
+          <p><strong>Notes de tête :</strong> Vanille douce, pétales blancs</p>
+          <p><strong>Notes de cœur :</strong> Musc blanc, orchidée</p>
+          <p><strong>Notes de fond :</strong> Accord chaud et réconfortant</p>
+        </div>
+
+        <div class="actions">
+          <button class="btn-lien" onclick="location.href='gammes.html'">Voir la gamme complète</button>
+          <button class="btn-lien" onclick="location.href='brumes.html'">Voir la brume de parfum</button>
+        </div>
+      </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+  </div>
+
+<!-- Panier modal -->
+<div class="cart-modal" id="cartModal" aria-hidden="true">
+  <div class="cart-content">
+    <button class="close-cart" id="closeCart" aria-label="Fermer">&times;</button>
+    <h3>Votre panier</h3>
+
+    <!-- liste des items -->
+    <div id="cartItems" class="cart-items"></div>
+
+    <!-- total -->
+    <div class="cart-footer">
+      <div class="cart-total">
+        <strong>Total :</strong> <span id="cartTotal">0,00€</span>
+      </div>
+      <button class="checkout-btn" id="goCheckout">Payer (démo)</button>
+    </div>
+  </div>
+</div>
+
+
+  <!-- ===== SCRIPTS ===== -->
+  <script>
+    /* --- Header burger --- */
+    const burger = document.getElementById('burger');
+    const menu = document.getElementById('menu');
+    burger.addEventListener('click', () => {
+      menu.classList.toggle('open');
+      burger.setAttribute('aria-expanded', menu.classList.contains('open'));
+    });
+    document.addEventListener('click', (e) => {
+      if (!menu.contains(e.target) && !burger.contains(e.target)) {
+        menu.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    /* --- Galerie --- */
+    const mainImg = document.getElementById('mainImg');
+    document.querySelectorAll('.thumb img').forEach(img => {
+      img.addEventListener('click', () => {
+        mainImg.src = img.dataset.full;
+        document.querySelectorAll('.thumb').forEach(b => b.classList.remove('current'));
+        img.parentElement.classList.add('current');
+      });
+    });
+
+    /* --- Footer commun --- */
+    fetch('partials/footer.html')
+      .then(r => r.text())
+      .then(html => { document.getElementById('footer-placeholder').innerHTML = html; });
+
+/* === PANIER amélioré (localStorage) === */
+const addToCartBtn = document.getElementById('addToCart');
+const openCartBtn  = document.getElementById('openCart');
+const cartModal    = document.getElementById('cartModal');
+const closeCartBtn = document.getElementById('closeCart');
+const cartItemsEl  = document.getElementById('cartItems');
+const cartTotalEl  = document.getElementById('cartTotal');
+const cartBadge    = document.getElementById('cartBadge');
+const goCheckout   = document.getElementById('goCheckout');
+
+function getCart(){ return JSON.parse(localStorage.getItem('cart') || '[]'); }
+function saveCart(cart){ localStorage.setItem('cart', JSON.stringify(cart)); }
+
+function cartCount(cart){ return cart.reduce((n,i)=>n+i.quantity,0); }
+
+function renderCart(){
+  const cart = getCart();
+  cartItemsEl.innerHTML = '';
+  let total = 0;
+
+  if(cart.length === 0){
+    cartItemsEl.innerHTML = '<p>Votre panier est vide.</p>';
+  } else {
+    cart.forEach((item, idx) => {
+      total += item.price * item.quantity;
+
+      const row = document.createElement('div');
+      row.className = 'cart-item';
+      row.innerHTML = `
+        <div class="ci-name">${item.name}</div>
+        <div class="ci-price">${item.price.toFixed(2)} €</div>
+        <div class="ci-actions">
+          <button class="qty-btn" data-act="minus" data-idx="${idx}">–</button>
+          <span class="qty-num">${item.quantity}</span>
+          <button class="qty-btn" data-act="plus" data-idx="${idx}">+</button>
+          <button class="remove-btn" data-act="remove" data-idx="${idx}">Supprimer</button>
+        </div>
+      `;
+      cartItemsEl.appendChild(row);
+    });
+  }
+
+  cartTotalEl.textContent = total.toFixed(2) + '€';
+  cartBadge.textContent = cartCount(cart);
+  cartBadge.style.display = cart.length ? 'flex' : 'none';
+}
+
+function openCart(){
+  renderCart();
+  cartModal.classList.add('open');
+  cartModal.setAttribute('aria-hidden','false');
+}
+function closeCart(){
+  cartModal.classList.remove('open');
+  cartModal.setAttribute('aria-hidden','true');
+}
+
+addToCartBtn.addEventListener('click', () => {
+  const cart = getCart();
+  const product = { name:'Velora – Crème pour le corps', price:22.50, quantity:1 };
+  const exist = cart.find(i => i.name === product.name);
+  if(exist){ exist.quantity += 1; } else { cart.push(product); }
+  saveCart(cart);
+  openCart();            // on ouvre directement pour feedback
+});
+
+// ouvrir / fermer
+openCartBtn.addEventListener('click', openCart);
+closeCartBtn.addEventListener('click', closeCart);
+cartModal.addEventListener('click', e => { if(e.target === cartModal) closeCart(); });
+
+// clic sur + / – / supprimer
+cartItemsEl.addEventListener('click', (e) => {
+  const btn = e.target.closest('button'); if(!btn) return;
+  const idx = +btn.dataset.idx; const act = btn.dataset.act;
+  const cart = getCart(); const item = cart[idx]; if(!item) return;
+
+  if(act === 'plus') item.quantity += 1;
+  if(act === 'minus') item.quantity = Math.max(1, item.quantity - 1);
+  if(act === 'remove') cart.splice(idx, 1);
+
+  saveCart(cart); renderCart();
+});
+
+// bouton Payer (démo)
+goCheckout.addEventListener('click', () => {
+  window.location.href = 'checkout.html';
+});
+
+// mettre à jour le badge au chargement
+renderCart();
+
+  </script>
+</body>
+</html>
