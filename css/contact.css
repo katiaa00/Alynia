@@ -1,0 +1,127 @@
+/* variables héritées de index.css : --bg, --text, --border, --card, --rose, --shadow */
+
+/* pastille rose */
+.chip{
+  background:#efc9d1;
+  border:1px solid var(--border);
+  color:#432;
+  text-align:center;
+  padding:10px 14px;
+  border-radius:999px;
+  margin:14px auto 22px;
+  width:min(680px, 92%);
+  font-weight:600;
+}
+
+/* grille page contact */
+.contact-wrap{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap:20px;
+}
+
+/* carte formulaire */
+.contact-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  box-shadow:var(--shadow);
+  padding:18px;
+}
+
+.contact-card h1{
+  margin:4px 0 14px;
+  font-size:clamp(1.3rem, 2.1vw, 1.8rem);
+}
+
+/* formulaire */
+.contact-form{ display:block }
+.row{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap:12px;
+  margin-bottom:12px;
+}
+
+.field{ display:flex; flex-direction:column; gap:6px }
+.field span{ font-size:.95rem; color:#444 }
+.field input,
+.field textarea{
+  appearance:none;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:.9em 1em;
+  font:inherit;
+  background:#fff;
+  outline:none;
+}
+.field input:focus,
+.field textarea:focus{ border-color:#e6b3bd; box-shadow:0 0 0 3px rgba(238,166,175,.25) }
+
+.btn-send{
+  display:inline-block;
+  width:100%;
+  margin-top:10px;
+  padding:14px 16px;
+  border:0;
+  border-radius:999px;
+  background:#efc9d1;
+  color:#432;
+  font-weight:700;
+  cursor:pointer;
+  transition:transform .06s ease;
+}
+.btn-send:active{ transform:scale(.98) }
+
+.form-note{
+  margin-top:10px;
+  font-size:.95rem;
+}
+.form-note.success{ color:#2b7a2f }
+.form-note.error{ color:#b72a2a }
+
+/* colonne droite */
+.contact-side{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+.service{
+  background:#fff8f9;
+  border:1px dashed #f0c9d1;
+  padding:14px;
+  border-radius:14px;
+}
+.service h2{ margin:.2rem 0 .2rem; font-size:1.05rem }
+.service p{ margin:0; color:#666 }
+
+.contact-block{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:12px 14px;
+  box-shadow:var(--shadow);
+}
+.contact-block h3{ margin:0 0 4px; font-size:1rem }
+.contact-block p{ margin:0; color:#555 }
+
+/* carte / plan */
+.map{ margin:18px 0 }
+.map-placeholder{
+  height:220px;
+  background:linear-gradient(180deg,#f7eee9,#efe3dc);
+  border:1px solid var(--border);
+  border-radius:14px;
+  display:flex; align-items:center; justify-content:center;
+  color:#8b6f63;
+  letter-spacing:.4px;
+}
+
+/* responsive */
+@media (min-width: 768px){
+  .contact-wrap{
+    grid-template-columns: 1.3fr .9fr;
+    align-items:start;
+  }
+  .row{ grid-template-columns: 1fr 1fr }
+}

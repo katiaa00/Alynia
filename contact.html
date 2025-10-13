@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact – Alynia</title>
+
+  <!-- styles globaux (déjà utilisés ailleurs) -->
+  <link rel="stylesheet" href="../css/index.css" />
+  <!-- style de la page contact -->
+  <link rel="stylesheet" href="../css/contact.css" />
+  <link rel="stylesheet" href="../footer.css" />
+</head>
+<body>
+  <div class="phone">
+
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+      <button class="burger" id="burger" aria-haspopup="true" aria-expanded="false" aria-controls="menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="logo">
+        <img src="../assets/alynia.png" alt="Alynia" class="logo-img" />
+      </div>
+
+      <button class="cart" aria-label="Panier">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6 6h15l-1.5 9H7.5L6 6Z" stroke="#222" stroke-width="1.6" />
+          <circle cx="9" cy="20" r="1.7" fill="#222"/>
+          <circle cx="18" cy="20" r="1.7" fill="#222"/>
+        </svg>
+      </button>
+
+      <!-- Menu -->
+      <nav id="menu" class="menu" role="menu" aria-label="Menu principal">
+        <a href="../index.html" role="menuitem">Accueil</a>
+        <a href="../cremes.html" role="menuitem">Crèmes pour le corps</a>
+      </nav>
+    </header>
+
+    <!-- ===== CONTENU ===== -->
+    <main class="container">
+      <div class="chip">Contact</div>
+
+      <section class="contact-wrap" aria-labelledby="contact-title">
+        <div class="contact-card">
+          <h1 id="contact-title">Contactez-nous</h1>
+
+          <form class="contact-form" id="contactForm" novalidate>
+            <div class="row">
+              <label class="field">
+                <span>Nom</span>
+                <input type="text" name="name" placeholder="Votre nom" required />
+              </label>
+              <label class="field">
+                <span>E-mail</span>
+                <input type="email" name="email" placeholder="vous@exemple.com" required />
+              </label>
+            </div>
+
+            <label class="field">
+              <span>Numéro de téléphone</span>
+              <input type="tel" name="phone" placeholder="+33 6 00 00 00 00" />
+            </label>
+
+            <label class="field">
+              <span>Message</span>
+              <textarea name="message" rows="5" placeholder="Votre message..." required></textarea>
+            </label>
+
+            <button type="submit" class="btn-send">Envoyer</button>
+            <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+
+        <aside class="contact-side">
+          <div class="service">
+            <h2>Service client disponible 7j/7</h2>
+            <p>Délais de réponse moyen : moins de 12h.</p>
+          </div>
+
+          <div class="contact-block">
+            <h3>Nous écrire</h3>
+            <p>support@alynia.fr</p>
+          </div>
+
+          <div class="contact-block">
+            <h3>Nous appeler</h3>
+            <p>+33 1 84 00 00 00</p>
+          </div>
+
+          <div class="contact-block">
+            <h3>Adresse</h3>
+            <p>21, rue des Fleurs – 75002 Paris</p>
+          </div>
+        </aside>
+      </section>
+
+
+
+    <div id="footer-placeholder"></div>
+  </div>
+
+  <script>
+    // menu burger
+    const burger = document.getElementById('burger');
+    const menu = document.getElementById('menu');
+    burger.addEventListener('click', () => {
+      menu.classList.toggle('open');
+      burger.setAttribute('aria-expanded', menu.classList.contains('open'));
+    });
+    document.addEventListener('click', (e) => {
+      if (!menu.contains(e.target) && !burger.contains(e.target)) {
+        menu.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // footer commun
+    fetch('../partials/footer.html')
+      .then(r => r.text())
+      .then(html => { document.getElementById('footer-placeholder').innerHTML = html; });
+
+    // pseudo-validation formulaire
+    const form = document.getElementById('contactForm');
+    const note = document.getElementById('formNote');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (form.checkValidity()) {
+        note.textContent = "Merci ! Votre message a bien été envoyé.";
+        note.className = "form-note success";
+        form.reset();
+      } else {
+        note.textContent = "Veuillez compléter les champs requis.";
+        note.className = "form-note error";
+      }
+    });
+  </script>
+</body>
+</html>
