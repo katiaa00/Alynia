@@ -146,7 +146,7 @@
       .then(r => r.text())
       .then(html => { document.getElementById('footer-placeholder').innerHTML = html; });
 
-    /* === PANIER amélioré (localStorage) === */
+    /* === PANIER  === */
     const addToCartBtn = document.getElementById('addToCart');
     const openCartBtn  = document.getElementById('openCart');
     const cartModal    = document.getElementById('cartModal');
@@ -232,7 +232,7 @@
       window.location.href = '../checkout.html';
     });
 
-    // init badge au chargement
+    
     renderCart();
   </script>
 </body>

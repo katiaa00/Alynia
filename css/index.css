@@ -268,3 +268,114 @@ body{
   }
 }
 
+/* === ZOOM DU CADRE DE L'IMAGE D'ACCUEIL === */
+.collage-card {
+  padding: 0;
+  border-radius: 0;
+  overflow: hidden;
+  max-width: 100%;
+  margin: 0 auto 40px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.collage-card img {
+  width: 100%;
+  height: 75vh;              /* 💡 plus grand et immersif */
+  object-fit: cover;          /* recadre sans déformation */
+  object-position: center 45%; /* ajuste le cadrage */
+  transform: scale(1.05);     /* léger zoom du contenu */
+  transition: transform 3s ease;
+}
+
+/* Effet zoom doux au survol (optionnel) */
+.collage-card img:hover {
+  transform: scale(1.1);
+}
+
+/* Desktop : image plus panoramique */
+@media (min-width: 1024px) {
+  .collage-card img {
+    height: 60vh;
+  }
+}
+/* === STYLE CALLIGRAPHIQUE DU TEXTE D'INTRO === */
+.intro-text p {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.3rem, 2.4vw, 1.8rem);
+  font-weight: 500;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.8;
+  color: var(--text);
+  letter-spacing: 0.5px;
+}
+
+/* Option : mot clé “Alynia” en calligraphie pure */
+.intro-text p span.brand {
+  font-family: "Great Vibes", cursive;
+  font-size: 1.4em;
+  color: var(--rose);
+  font-weight: 400;
+}
+
+/* === CENTRAGE PARFAIT DU TEXTE D'INTRO === */
+.intro-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 50vh; /* le texte occupe environ la moitié de la hauteur visible */
+  padding: 40px 20px;
+}
+
+.intro-text {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.intro-text p {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 500;
+  text-align: center;
+  color: var(--text);
+  line-height: 1.8;
+  letter-spacing: 0.5px;
+  max-width: 800px;
+  margin: 0;
+}
+
+/* le nom Alynia en calligraphie */
+.intro-text p span.brand {
+  font-family: "Great Vibes", cursive;
+  font-size: 1.6em;
+  color: var(--rose);
+  font-weight: 400;
+}
+
+/* === CENTRAGE DES CARTES DE GAMMES === */
+.gammes-cards {
+  display: flex;
+  justify-content: center; /* centre les cartes horizontalement */
+  align-items: stretch; /* garde la même hauteur */
+  flex-wrap: wrap; /* permet le retour à la ligne sur mobile */
+  gap: 24px; /* espace entre les cartes */
+  margin: 40px auto;
+  max-width: 1000px; /* limite la largeur globale */
+}
+
+.gamme-card {
+  flex: 1 1 300px; /* largeur minimum de chaque carte */
+  max-width: 420px; /* limite pour garder l’équilibre visuel */
+}
+.titre-rose {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 600;
+  color: var(--rose);
+  text-align: center;
+  margin: 40px auto 24px;
+}
