@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>CGV – Alynia</title>
   <link rel="stylesheet" href="legal.css" />
-  <link rel="stylesheet" href="../footer.css" />
+  <link rel="stylesheet" href="footer.css" />
 </head>
 <body>
   <div class="phone">
@@ -16,7 +16,7 @@
       </button>
 
       <div class="logo">
-        <img src="../assets/alynia.png" alt="Alynia" class="logo-img">
+        <img src="/assets/alynia.png" alt="Alynia" class="logo-img">
       </div>
 
       <button class="cart" aria-label="Panier">
@@ -58,7 +58,7 @@
         <p>Le client valide sa commande après acceptation des présentes CGV. Un e-mail de confirmation récapitulant la commande est
           adressé au client.</p>
 
-        <h2>Article 5 – Paiement</h2>
+        <h2>Article 5  – Paiement</h2>
         <p>Les paiements sont sécurisés et peuvent être effectués par carte bancaire (Visa, MasterCard…) ou tout autre moyen
           proposé sur le site lors du passage de commande.</p>
 
@@ -106,9 +106,10 @@
     });
 
     // footer commun
-    fetch('../partials/footer.html')
+    fetch('/partials/footer.html')
       .then(r => r.text())
       .then(html => { document.getElementById('footer-placeholder').innerHTML = html; });
   </script>
 </body>
 </html>
+

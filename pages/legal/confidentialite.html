@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Politique de confidentialité – Alynia</title>
   <link rel="stylesheet" href="legal.css" />
-  <link rel="stylesheet" href="../footer.css" />
+  <link rel="stylesheet" href="footer.css" />
 </head>
 <body>
   <div class="phone">
@@ -16,7 +16,7 @@
       </button>
 
       <div class="logo">
-        <img src="assets/alynia.png" alt="Alynia" class="logo-img">
+        <img src="/assets/alynia.png" alt="Alynia" class="logo-img">
       </div>
 
       <button class="cart" aria-label="Panier">
@@ -29,9 +29,9 @@
 
       <!-- Menu -->
       <nav id="menu" class="menu" role="menu" aria-label="Menu principal">
-        <a href="../index.html" role="menuitem">Accueil</a>
-        <a href="../cremes.html" role="menuitem">Crèmes pour le corps</a>
-        <a href="cgv.html" role="menuitem">CGV</a>
+        <a href="/index.html" role="menuitem">Accueil</a>
+        <a href="/cremes.html" role="menuitem">Crèmes pour le corps</a>
+        <a href="/contact.html" role="menuitem">Contact</a>
       </nav>
     </header>
 
@@ -112,7 +112,7 @@
     });
 
     // footer commun
-    fetch('partials/footer.html')
+    fetch('/partials/footer.html')
       .then(r => r.text())
       .then(html => { document.getElementById('footer-placeholder').innerHTML = html; });
   </script>
