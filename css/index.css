@@ -1,422 +1,183 @@
-:root{
-  --bg:#f5efe7;        
-  --text:#222;
-  --muted:#555;
-  --border:#e6ddd2;
-  --card:#ffffff;
-  --rose:#eea6af;      
-  --shadow:0 8px 24px rgba(0,0,0,.06);
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+/* ── Variables ───────────────────────── */
+:root {
+  --bg:      #faf8f5;
+  --white:   #ffffff;
+  --text:    #1c1c1c;
+  --muted:   #717171;
+  --border:  #e8ddd5;
+  --rose:    #d4a0a8;
+  --rose-lt: #f5e8eb;
+  --card:    #ffffff;
+  --shadow:  0 2px 16px rgba(0,0,0,.07);
+  --radius:  14px;
 }
 
-*{box-sizing:border-box}
-html,body{margin:0}
-body{
-  background:var(--bg);
-  color:var(--text);
-  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial;
-  line-height:1.55;
-  display:flex; justify-content:center;
+/* ── Reset ───────────────────────────── */
+*, *::before, *::after { box-sizing: border-box }
+html, body { margin: 0 }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, -apple-system, Arial, sans-serif;
+  line-height: 1.6;
 }
 
-/* Mobile first : occupe toute la largeur (portrait/paysage) */
-.phone{
-  width:100%;
-  max-width:1100px;
-  min-height:100svh;              /* vh relatif au viewport mobile */
-  margin:0 auto;
-  background:var(--bg);
-  position:relative;
-  padding:0 4vw;                  /* %/vw -> unité relative */
-}
+/* ── Layout ──────────────────────────── */
+.phone { width: 100%; min-height: 100svh }
 
-/* ====== HEADER (inchangé) ====== */
-.header{
-  position:sticky; top:0; z-index:30;
-  display:grid; grid-template-columns:44px 1fr 44px; align-items:center;
-  width:100%;
-  background:#fff;
-  border-bottom:1px solid var(--border);
-  padding:10px 12px;
-}
-.burger{ width:40px; height:30px; position:relative; border:0; background:transparent; cursor:pointer }
-.burger span{ position:absolute; left:8px; right:8px; height:2px; background:#333 }
-.burger span:nth-child(1){ top:6px } .burger span:nth-child(2){ top:13px } .burger span:nth-child(3){ top:20px }
-.logo{ flex-grow:1; display:flex; justify-content:center; align-items:center; max-height:80px }
-.logo-img{ height:16vh; width:auto; display:block }    /* vh -> adaptatif paysage/portrait */
-.cart{ border:0; background:transparent; justify-self:end; cursor:pointer }
-
-/* Menu déroulant */
-.menu{
-  position:absolute; left:12px; top:74px;
-  background:#fff; border:1px solid var(--border);
-  border-radius:10px; width:230px; padding:6px;
-  box-shadow:var(--shadow); display:none;
-}
-.menu.open{ display:block }
-.menu a{
-  display:flex; justify-content:space-between; align-items:center;
-  padding:10px 12px; margin:4px 0; text-decoration:none; color:#222; border-radius:8px;
-}
-.menu a::after{ content:"›"; color:#444 }
-.menu a:hover{ background:#faf7f2 }
-
-/* ========= MAIN ========= */
-.container{ width:100%; padding:16px 0 56px }
-
-/* 1) Intro */
-.collage-card{
-  background:#fff; border:1px solid var(--border);
-  border-radius:18px; box-shadow:var(--shadow);
-  padding:18px; margin:14px auto 18px;
-}
-.collage-card img{ display:block; width:100%; height:auto; margin:0 auto; border-radius:12px }
-
-.intro-grid{
-  display:grid; grid-template-columns:1fr; gap:16px; align-items:center;
-  margin: 20px 0;
-}
-.intro-text p{ font-size:0.95rem; line-height:1.6 }
-.intro-img img{ max-width:100%; border-radius:8px }
-
-/* 2) Menu tactile (boutons) */
-.touch-menu{
-  display:flex; gap:10px; flex-wrap:wrap; margin:6px 0 16px;
-}
-.btn-link{
-  font-size:0.95rem;               /* rem/em */
-  padding:0.8em 1.2em;
-  border:1px solid var(--border);
-  background:#fff;
-  border-radius:999px;
-  cursor:pointer;
-}
-.btn-link:active{ transform:scale(0.98) }
-
-/* 3) Titre rose */
-.titre-rose{
-  font-size:clamp(1.1rem, 2.8vw, 1.6rem);  /* vw pour adaptatif */
-  font-weight:700;
-  color:var(--rose);
-  margin: 10px 0 14px 4px;
-}
-
-/* 4) Cartes gammes cliquables */
-.gammes-cards{
-  display:grid;
-  grid-template-columns: 1fr;           /* mobile: 1 colonne */
-  gap:16px; margin-bottom:20px;
-}
-.gamme-card{
-  display:block; text-decoration:none; color:inherit;
-  background:#fff; border:1px solid var(--border); border-radius:14px; overflow:hidden;
-  box-shadow: var(--shadow); transition: transform .15s ease, box-shadow .15s ease;
-}
-.gamme-card:hover{ transform: translateY(-2px); box-shadow:0 14px 36px rgba(0,0,0,.08) }/* remplacer ta règle actuelle */
-.gamme-card img{
-  width:100%;
-  height:500px;          /* au lieu de 210px */
-  object-fit:cover;      /* on garde cover */
-  object-position:center top; /* on remonte un peu le cadrage */
-  display:block;
-  border-radius:12px 12px 0 0;
-}
-
-.gamme-card .content{ padding:12px }
-.gamme-card h3{ margin:0 0 6px; font-size:1rem }
-.gamme-card p{ margin:0; color:var(--muted); font-size:.95rem }
-
-/* 5) BLOCS .box — flex column (mobile), row (tablette/desktop) */
-.boxes{ display:flex; flex-direction:column; gap:18px; margin:22px 0 }
-.box{
-  display:flex; flex-direction:column; gap:12px;
-  background:#fff; border:1px solid var(--border);
-  border-radius:14px; padding:12px; box-shadow:var(--shadow);
-}
-.box img{ width:100%; height:auto; border-radius:10px }
-.box-body h2{ margin:.2rem 0 .4rem; font-size:1.25rem }
-.box-body p{ margin:0; font-size:1rem; line-height:1.6 }
-
-/* Liste simple */
-.gammes-list h3{ margin:16px 0 8px }
-.gammes-list ul{ list-style:none; padding:0; margin:0 }
-.gammes-list li{ margin:8px 0; padding-left:10px; position:relative }
-.gammes-list li::before{
-  content:""; position:absolute; left:0; top:.45em; width:3px; height:1em; background:#ddd; border-radius:2px;
-}
-
-/* ======= MEDIA QUERIES ======= */
-
-/* Tablette */
-@media (min-width: 768px){
-  .phone{ max-width:100vw }                 /* prend toute la largeur */
-  .intro-grid{ grid-template-columns:1fr 1fr }
-  .gammes-cards{ grid-template-columns: repeat(2, 1fr) }
-  .box{ flex-direction:row; align-items:center }   /* COLUMN -> ROW exigence */
-  .box img{ width:45% }                             
-}
-
-/* Desktop */
-@media (min-width: 1024px){
-  .phone{ max-width:1024px }
-  .gammes-cards{ grid-template-columns: repeat(3, 1fr) }
-  .box img{ width:38% }
-}
-
-/* Orientation : styles différents */
-@media (orientation: portrait){
-  :root{ --bg:#f5efe7; }                   /* fond doux en portrait */
-}
-@media (orientation: landscape){
-  .phone{ max-width:100vw; padding-left:3vw; padding-right:3vw }  /* plein écran en paysage */
-  .boxes{ background:rgba(255,255,255,0.35); border-radius:16px; padding:8px } /* petit changement visuel */
-}
-
-/* Accessibilité */
-.sr-only{
-  position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden;
-  clip:rect(0,0,0,0); border:0;
-}
-
-/* -------- SECTION .boxes : rendu plus compact -------- */
-.boxes {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  margin: 40px auto;          /* espace équilibré haut/bas */
-  background: #f9f4ef;        /* fond très léger beige rosé */
-  border-radius: 16px;
-  padding: 24px;
-  max-width: 900px;           /* pas toute la largeur */
-  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
-}
-
-/* Chaque .box : image et texte côte à côte (tablette+desktop), centrés */
-.box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: var(--card);
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: var(--shadow);
-}
-
-/* image plus petite et centrée */
-.box img {
-  width: 100%;
-  max-width: 420px;
-  height: auto;
-  display: block;
-  border-radius: 10px 10px 0 0;
-}
-
-/* texte centré, plus resserré */
-.box-body {
-  padding: 1.2rem;
-  text-align: center;
-}
-
-.box-body h2 {
-  font-size: 1.3rem;
-  margin-bottom: 0.5em;
-}
-
-.box-body p {
-  color: var(--muted);
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-/* --- Tablette : côte à côte mais centrés dans le conteneur --- */
-@media (min-width: 768px) {
-  .box {
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    padding: 16px 24px;
-  }
-
-  .box img {
-    width: 40%;
-    border-radius: 10px;
-  }
-
-  .box-body {
-    width: 50%;
-    text-align: left;
-  }
-}
-
-/* --- Desktop : alignement élégant et équilibré --- */
-@media (min-width: 1024px) {
-  .boxes {
-    max-width: 1000px;
-    padding: 36px;
-  }
-
-  .box img {
-    width: 35%;
-  }
-
-  .box-body h2 {
-    font-size: 1.5rem;
-  }
-
-  .box-body p {
-    font-size: 1.05rem;
-  }
-}
-
-/* === ZOOM DU CADRE DE L'IMAGE D'ACCUEIL === */
-.collage-card {
-  padding: 0;
-  border-radius: 0;
-  overflow: hidden;
-  max-width: 100%;
-  margin: 0 auto 40px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-}
-
-.collage-card img {
-  width: 100%;
-  height: 75vh;              /* 💡 plus grand et immersif */
-  object-fit: cover;          /* recadre sans déformation */
-  object-position: center 45%; /* ajuste le cadrage */
-  transform: scale(1.05);     /* léger zoom du contenu */
-  transition: transform 3s ease;
-}
-
-/* Effet zoom doux au survol (optionnel) */
-.collage-card img:hover {
-  transform: scale(1.1);
-}
-
-/* Desktop : image plus panoramique */
-@media (min-width: 1024px) {
-  .collage-card img {
-    height: 60vh;
-  }
-}
-/* === STYLE CALLIGRAPHIQUE DU TEXTE D'INTRO === */
-.intro-text p {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(1.3rem, 2.4vw, 1.8rem);
-  font-weight: 500;
-  text-align: center;
-  max-width: 900px;
+.container {
+  max-width: 1100px;
   margin: 0 auto;
-  line-height: 1.8;
-  color: var(--text);
-  letter-spacing: 0.5px;
+  padding: 40px 24px 80px;
 }
 
-/* Option : mot clé “Alynia” en calligraphie pure */
-.intro-text p span.brand {
-  font-family: "Great Vibes", cursive;
-  font-size: 1.4em;
-  color: var(--rose);
-  font-weight: 400;
+/* ── Header ──────────────────────────── */
+.header {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center;
+  padding: 0 20px; height: 66px;
 }
 
-/* === CENTRAGE PARFAIT DU TEXTE D'INTRO === */
+.burger {
+  display: flex; flex-direction: column;
+  justify-content: center; gap: 5px;
+  width: 36px; height: 36px; padding: 4px;
+  border: 0; background: transparent; cursor: pointer; flex-shrink: 0;
+}
+.burger span { display: block; height: 2px; background: var(--text); border-radius: 2px }
+
+.logo { display: flex; align-items: center; padding-left: 10px; margin-right: auto }
+.logo-text {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.75rem; color: var(--rose);
+  letter-spacing: 3px; line-height: 1; user-select: none;
+}
+
+.cart {
+  border: 0; background: transparent; cursor: pointer;
+  display: flex; align-items: center; padding: 8px; position: relative;
+}
+.cart-badge {
+  position: absolute; top: 2px; right: 0;
+  min-width: 17px; height: 17px; padding: 0 4px;
+  background: #c44; color: #fff;
+  font-size: .65rem; font-weight: 700; border-radius: 999px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* Mobile dropdown */
+.menu {
+  position: absolute; top: 66px; left: 0; right: 0;
+  background: var(--white); border-bottom: 1px solid var(--border);
+  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+  display: none; flex-direction: column;
+  padding: 8px 24px 16px; z-index: 99;
+}
+.menu.open { display: flex }
+.menu a {
+  padding: 13px 4px; color: var(--text);
+  text-decoration: none; font-size: .95rem;
+  border-bottom: 1px solid var(--border);
+}
+.menu a:last-child { border-bottom: 0 }
+.menu a:hover { color: var(--rose) }
+.menu a::after { content: none }
+
+/* ── Intro ───────────────────────────── */
 .intro-grid {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  min-height: 50vh; /* le texte occupe environ la moitié de la hauteur visible */
-  padding: 40px 20px;
+  display: flex; justify-content: center; align-items: center;
+  text-align: center; padding: 64px 24px 52px;
 }
-
-.intro-text {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
+.intro-text { max-width: 620px }
 .intro-text p {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(1.4rem, 2.5vw, 2rem);
-  font-weight: 500;
-  text-align: center;
-  color: var(--text);
-  line-height: 1.8;
-  letter-spacing: 0.5px;
-  max-width: 800px;
-  margin: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.05rem, 1.6vw, 1.4rem);
+  font-style: italic; color: var(--muted);
+  line-height: 1.9; margin: 0;
+}
+.brand { font-style: normal; font-weight: 600; color: var(--rose) }
+
+/* ── Section title ───────────────────── */
+.titre-rose {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.15rem, 1.8vw, 1.5rem);
+  font-weight: 600; color: var(--text);
+  text-align: center; margin: 0 0 28px;
+  letter-spacing: .3px;
 }
 
-/* le nom Alynia en calligraphie */
-.intro-text p span.brand {
-  font-family: "Great Vibes", cursive;
-  font-size: 1.6em;
-  color: var(--rose);
-  font-weight: 400;
-}
-
-/* === CENTRAGE DES CARTES DE GAMMES === */
+/* ── Gamme cards ─────────────────────── */
 .gammes-cards {
-  display: flex;
-  justify-content: center; /* centre les cartes horizontalement */
-  align-items: stretch; /* garde la même hauteur */
-  flex-wrap: wrap; /* permet le retour à la ligne sur mobile */
-  gap: 24px; /* espace entre les cartes */
-  margin: 40px auto;
-  max-width: 1000px; /* limite la largeur globale */
+  display: grid; grid-template-columns: 1fr;
+  gap: 20px; max-width: 860px; margin: 0 auto 60px;
 }
+@media (min-width: 600px) { .gammes-cards { grid-template-columns: 1fr 1fr } }
 
 .gamme-card {
-  flex: 1 1 300px; /* largeur minimum de chaque carte */
-  max-width: 420px; /* limite pour garder l’équilibre visuel */
+  display: block; text-decoration: none; color: inherit;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform .18s, box-shadow .18s;
 }
-.titre-rose {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(1.4rem, 3vw, 2rem);
-  font-weight: 600;
-  color: var(--rose);
-  text-align: center;
-  margin: 40px auto 24px;
+.gamme-card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,.1) }
+.gamme-card img {
+  width: 100%; height: 230px;
+  object-fit: cover; object-position: center; display: block;
+}
+.gamme-card .content { padding: 16px 18px 20px }
+.gamme-card h3 {
+  margin: 0 0 6px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem; font-weight: 600;
+}
+.gamme-card p { margin: 0; color: var(--muted); font-size: .875rem; line-height: 1.55 }
+
+/* ── Feature boxes ───────────────────── */
+.boxes {
+  display: grid; grid-template-columns: 1fr;
+  gap: 20px; max-width: 860px; margin: 0 auto 60px;
+}
+@media (min-width: 600px) { .boxes { grid-template-columns: 1fr 1fr } }
+
+.box {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);
+}
+.box img { width: 100%; height: 190px; object-fit: cover; display: block }
+.box-body { padding: 18px 20px 22px }
+.box-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem; font-weight: 600; margin: 0 0 6px;
+}
+.box-body p { margin: 0; color: var(--muted); font-size: .875rem; line-height: 1.6 }
+
+/* ── Accessibility ───────────────────── */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); border: 0;
 }
 
-/* ====== Desktop : menu toujours visible ====== */
-@media (min-width: 1024px){
-  .header{
-    /* on laisse de la place au menu au centre */
-    grid-template-columns: 1fr auto 44px;
-    padding: 14px 24px;
+/* ── Desktop nav ─────────────────────── */
+@media (min-width: 1024px) {
+  .header { padding: 0 40px }
+  .burger { display: none }
+  .logo { padding-left: 0 }
+
+  .menu {
+    position: static; display: flex !important;
+    flex-direction: row; align-items: center; gap: 2px;
+    background: transparent; border: 0; box-shadow: none;
+    padding: 0; margin-left: 36px; z-index: auto;
   }
-
-  .burger{ display:none }                 /* plus de burger sur PC */
-
-  .menu{
-    /* le menu passe en inline, visible en permanence */
-    position: static;
-    display: flex !important;
-    align-items: center;
-    gap: 24px;
-
-    /* on enlève le style "panneau" du dropdown */
-    background: transparent;
-    border: 0;
-    box-shadow: none;
-    width: auto;
-    padding: 0;
-    margin: 0;
-
-    /* place le menu au centre du header (colonne 2 de la grille) */
-    grid-column: 2;
-    justify-self: center;
+  .menu a {
+    padding: 7px 14px; border: 0; border-radius: 8px;
+    font-size: .88rem; color: var(--muted); font-weight: 500;
   }
-
-  .menu a{
-    margin: 0;
-    padding: 8px 10px;
-    border-radius: 6px;
-    text-decoration: none;
-    color: var(--text);
-  }
-  .menu a:hover{ background: #f6f3ee }
-  .menu a::after{ content: none }         /* on retire la petite flèche */
+  .menu a:hover { background: var(--rose-lt); color: var(--text) }
 }
